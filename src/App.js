@@ -1,5 +1,5 @@
 import './App.css';
-import Search from './applications/SwapiCharacterSearcher';
+import Search from './applications/PersonSearch';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({

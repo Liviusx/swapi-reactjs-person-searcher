@@ -1,39 +1,8 @@
-import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
-import { gql } from '@apollo/client';
-
-const query = gql`
-    query Search($name: String!) {
-        searchPerson(name: $name) {
-            name
-            films {
-                title
-            }
-            vehicles {
-                name
-            }
-        }
-    }
-`;
-
-const Search = () => {
-    const [searchedName, setSearchedName] = useState("");
-    const { data, loading, error } = useQuery(query, {
-        variables: { name: searchedName },
-    });
-
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error</p>;
-
+import usePersonSearch from "../usePersonSearch"
+export const PersonTable = () => {
+    const { data, loading, error } = usePersonSearch();
     return (
-        <div>
-            <input
-                placeholder='Type in the name...'
-                type="text"
-                value={searchedName}
-                onChange={e => setSearchedName(e.target.value)}
-            />
-            <button onClick={() => setSearchedName(searchedName)}>Search</button>
+        <>
             {data.searchPerson.map(person => (
                 <div key={person.name}>
                     <h2>{person.name}</h2>
@@ -69,8 +38,6 @@ const Search = () => {
                     </table>
                 </div>
             ))}
-        </div>
-    );
-};
-
-export default Search;
+        </>
+    )
+}
