@@ -1,4 +1,5 @@
 import usePersonSearch from "../usePersonSearch"
+import { CircularProgress } from "@mui/material";
 
 import styled from "styled-components";
 
@@ -11,22 +12,22 @@ const StyledInput = styled.input`
     width: 90%;
     height: 30px;
     padding: 5px;
-    border: 1px solid whitesmoke;
+    padding-left: 20px
     background: whitesmoke;
     margin-right: 5px;
+    font-size: 16px;
 `
 
 export const SearchBar = () => {
-    const { searchedPerson, setSearchedPerson } = usePersonSearch();
+    const { searchedPerson, setSearchedPerson, loading } = usePersonSearch();
     return (
         <DivContainer>
             <StyledInput
-                placeholder='Type in the name...'
+                placeholder='Type in the name of the character...'
                 type="text"
                 value={searchedPerson}
                 onChange={e => setSearchedPerson(e.target.value)}
             />
-            {/* <button onClick={() => setSearchedPerson(searchedPerson)}>Search</button> */}
         </DivContainer>
     )
 }

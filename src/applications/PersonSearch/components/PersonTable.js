@@ -5,13 +5,23 @@ const PersonNameTitle = styled.h2`
     text-align: left;
     background: whitesmoke;
     padding: 5px;
-    border: 1px solid darkgrey;
+    border: 1px solid gray;
+    margin: 0;
 `;
 
 const Container = styled.div`
     height: 500px;
     overflow: auto;
 `;
+
+const StyledLi = styled.li`
+    text-align: left;
+`;
+
+const StyledTable = styled.table`
+    width: 100%;
+    text-align: center;   
+`
 
 export const PersonTable = () => {
     const { data, loading, error } = usePersonSearch();
@@ -26,36 +36,33 @@ export const PersonTable = () => {
             {data.searchPerson.map(person => (
                 <div key={person.name}>
                     <PersonNameTitle >{person.name}</PersonNameTitle>
-                    <h3>Films</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                            </tr>
-                        </thead>
+                    <StyledTable>
                         <tbody>
-                            {person.films.map(film => (
-                                <tr key={film.title}>
-                                    <td>{film.title}</td>
-                                </tr>
-                            ))}
+                            <td style={{ width: 150}}><h3>Films</h3></td>
+                            <td>
+                                <ul style={{ width: 200}}>
+                                    {person.films.map(film => (
+                                        <StyledLi key={film.title}>
+                                            {film.title}
+                                        </StyledLi>
+                                    ))}
+                                </ul>
+                            </td>
+                            <td style={{ width: 150}}><h3>Vehicles</h3></td>
+                            <td>
+                                <ul style={{ width: 200}}>
+                                    {person.vehicles.map(vehicle => (
+                                        <StyledLi key={vehicle.name}>
+                                            <td>{vehicle.name}</td>
+                                        </StyledLi>
+                                    ))}
+                                    {
+                                        person.vehicles.length == 0 && <StyledLi>None</StyledLi>
+                                    }
+                                </ul>
+                            </td>
                         </tbody>
-                    </table>
-                    <h3>Vehicles</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {person.vehicles.map(vehicle => (
-                                <tr key={vehicle.name}>
-                                    <td>{vehicle.name}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                    </StyledTable>
                 </div>
             ))}
         </Container>
