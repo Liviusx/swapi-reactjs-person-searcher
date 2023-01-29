@@ -1,5 +1,5 @@
 import './App.css';
-import Search from './applications/PersonSearch';
+import PersonSearchApplication from './applications/PersonSearch';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <ApolloProvider client={client}>
-        <Search />
+        <PersonSearchApplication />
       </ApolloProvider>
     </div>
   );

@@ -1,26 +1,10 @@
-import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
+import React from 'react';
 import { gql } from '@apollo/client';
 import { PersonSearchContextProvider } from './context';
-import usePersonSearch from './usePersonSearch';
+import { SearchBar } from './components/SearchBar';
 import { PersonTable } from './components/PersonTable';
 
-const query = gql`
-    query Search($name: String!) {
-        searchPerson(name: $name) {
-            name
-            films {
-                title
-            }
-            vehicles {
-                name
-            }
-        }
-    }
-`;
-
 const PersonSearchApplication = () => {
-    const {searchedPerson, setSearchedPerson, data, loading, error} = usePersonSearch();
     return (
         <>
             <PersonSearchContextProvider>

@@ -1,5 +1,20 @@
 import React, { createContext, useState } from "react";
-import { useQuery } from "@apollo/client";
+import { useQuery, gql } from "@apollo/client";
+
+
+const query = gql`
+    query Search($name: String!) {
+        searchPerson(name: $name) {
+            name
+            films {
+                title
+            }
+            vehicles {
+                name
+            }
+        }
+    }
+`;
 
 const PersonSearchContext = createContext();
 
@@ -10,9 +25,9 @@ const PersonSearchContextProvider = (props) => {
     });
 
     return (
-        <SwapiContext.Provider value={{ searchedPerson, setSearchedPerson, data, loading, error }}>
+        <PersonSearchContext.Provider value={{ searchedPerson, setSearchedPerson, data, loading, error }}>
             {props.children}
-        </ SwapiContext.Provider >
+        </ PersonSearchContext.Provider >
     )
 }
 
