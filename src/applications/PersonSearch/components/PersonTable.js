@@ -24,13 +24,18 @@ const StyledTable = styled.table`
 `
 
 export const PersonTable = () => {
-    const { data, loading, error } = usePersonSearch();
+    const { data, loading, error, searchPerson } = usePersonSearch();
     if (loading) {
         return <p>Loading.....</p>
     }
     if (error) {
         return <p>Error occured while loading the component</p>
     }
+    if(data.searchPerson.length === 0)
+    {
+        return <p>No data found!</p>
+    }
+
     return (
         <Container>
             {data.searchPerson.map(person => (
