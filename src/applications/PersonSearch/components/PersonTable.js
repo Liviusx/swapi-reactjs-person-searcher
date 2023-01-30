@@ -24,7 +24,7 @@ const Table = styled.table`
 `
 
 export const PersonTable = () => {
-    const { data, loading, error } = usePersonSearch();
+    const { data, loading, error, queriedPerson } = usePersonSearch();
     if (loading) {
         return <p>Loading.....</p>
     }
@@ -33,7 +33,7 @@ export const PersonTable = () => {
     }
     if(data.searchPerson.length === 0)
     {
-        return <p>No data found!</p>
+        return <p>No data found for entry <b>{queriedPerson}</b> !</p>
     }
 
     return (
