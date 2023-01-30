@@ -23,7 +23,7 @@ const PersonSearchContextProvider = (props) => {
     const [searchedPerson, setSearchedPerson] = useState("");
     const [queriedPerson, setQueriedPerson] = useState("");
     const { data, loading, error } = useQuery(query, {
-        variables: { name: queriedPerson },
+        variables: { name: queriedPerson } 
     });
 
     return (

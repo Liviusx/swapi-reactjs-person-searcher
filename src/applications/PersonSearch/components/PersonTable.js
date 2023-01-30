@@ -4,7 +4,7 @@ import styled from "styled-components";
 const PersonName = styled.h2`
     text-align: left;
     background: whitesmoke;
-    padding: 5px;
+    padding: 5px 5px 5px 10px;
     border: 1px solid gray;
     margin: 0;
 `;
@@ -57,8 +57,8 @@ export const PersonTable = () => {
                             <td>
                                 <ul style={{ width: 200}}>
                                     {person.vehicles.map(vehicle => (
-                                        <StyledLi key={vehicle.name}>
-                                            <td>{vehicle.name}</td>
+                                        <StyledLi key={vehicle.model}>
+                                            <td>{vehicle.model}</td>
                                         </StyledLi>
                                     ))}
                                     {

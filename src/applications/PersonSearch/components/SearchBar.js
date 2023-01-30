@@ -25,16 +25,23 @@ const Button = styled.button`
 
 export const SearchBar = () => {
     const { searchedPerson, setSearchedPerson, loading, setQueriedPerson } = usePersonSearch();
+
+    const onKeyPressHandle = (e) => {
+        if(e.keyCode === 13)
+            setQueriedPerson(e.target.value)
+    }
+
     return (
         <Container>
             <Input
+                onKeyUp={onKeyPressHandle}
                 disabled={loading}
                 placeholder='Type in the name of the character...'
                 type="text"
                 value={searchedPerson}
                 onChange={e => setSearchedPerson(e.target.value)}
             />
-            <Button type="submit"
+            <Button type="button"
                 disabled={loading}
                 onClick={() => setQueriedPerson(searchedPerson)}>Search</Button>
         </Container>
