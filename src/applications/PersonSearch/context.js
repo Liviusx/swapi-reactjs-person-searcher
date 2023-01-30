@@ -10,7 +10,8 @@ const query = gql`
                 title
             }
             vehicles {
-                name
+                name,
+                model
             }
         }
     }
@@ -20,12 +21,18 @@ const PersonSearchContext = createContext();
 
 const PersonSearchContextProvider = (props) => {
     const [searchedPerson, setSearchedPerson] = useState("");
+    const [queriedPerson, setQueriedPerson] = useState("");
     const { data, loading, error } = useQuery(query, {
-        variables: { name: searchedPerson },
+        variables: { name: queriedPerson },
     });
 
     return (
-        <PersonSearchContext.Provider value={{ searchedPerson, setSearchedPerson, data, loading, error }}>
+        <PersonSearchContext.Provider
+            value={{
+                searchedPerson, setSearchedPerson,
+                data, loading, error,
+                queriedPerson, setQueriedPerson
+            }}>
             {props.children}
         </ PersonSearchContext.Provider >
     )

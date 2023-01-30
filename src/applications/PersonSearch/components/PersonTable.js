@@ -1,7 +1,7 @@
 import usePersonSearch from "../usePersonSearch"
 import styled from "styled-components";
 
-const PersonNameTitle = styled.h2`
+const PersonName = styled.h2`
     text-align: left;
     background: whitesmoke;
     padding: 5px;
@@ -18,13 +18,13 @@ const StyledLi = styled.li`
     text-align: left;
 `;
 
-const StyledTable = styled.table`
+const Table = styled.table`
     width: 100%;
     text-align: center;   
 `
 
 export const PersonTable = () => {
-    const { data, loading, error, searchPerson } = usePersonSearch();
+    const { data, loading, error } = usePersonSearch();
     if (loading) {
         return <p>Loading.....</p>
     }
@@ -40,8 +40,8 @@ export const PersonTable = () => {
         <Container>
             {data.searchPerson.map(person => (
                 <div key={person.name}>
-                    <PersonNameTitle >{person.name}</PersonNameTitle>
-                    <StyledTable>
+                    <PersonName >{person.name}</PersonName>
+                    <Table>
                         <tbody>
                             <td style={{ width: 150}}><h3>Films</h3></td>
                             <td>
@@ -67,7 +67,7 @@ export const PersonTable = () => {
                                 </ul>
                             </td>
                         </tbody>
-                    </StyledTable>
+                    </Table>
                 </div>
             ))}
         </Container>
