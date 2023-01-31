@@ -9,7 +9,6 @@ export const GET_PERSON_BY_NAME =
                 title
             }
             vehicles {
-                name,
                 model
             }
         }

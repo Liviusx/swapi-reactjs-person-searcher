@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
 import { useQuery, gql } from "@apollo/client";
-import { GET_PERSON_BY_NAME } from "./gqlQueries";
+import { GET_PERSON_BY_NAME } from "./queries";
 
 
 const PersonSearchContext = createContext();

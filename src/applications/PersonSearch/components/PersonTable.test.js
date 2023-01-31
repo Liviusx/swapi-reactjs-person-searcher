@@ -2,15 +2,14 @@ import { render, screen } from '@testing-library/react';
 import { PersonTable } from './PersonTable';
 import { PersonSearchContextProvider } from '../context';
 import { MockedProvider } from "@apollo/client/testing";
-import { GET_PERSON_BY_NAME } from '../gqlQueries';
+import { GET_PERSON_BY_NAME } from '../queries';
 import { ApolloProvider } from '@apollo/client';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
-
 // Test case where the client connects to the actual graphql API
-it("renders without error", async () => {
+it("renders without error and defaults to loading screen", async () => {
     const client = new ApolloClient({
-        uri: "http://localhost:4002/",
+        uri: "http://localhost:4000/",
         cache: new InMemoryCache(),
     });
     render(
@@ -65,6 +64,8 @@ describe("PersonTable component", () => {
                 </PersonSearchContextProvider>
             </MockedProvider>
         )
+
+        expect(await screen.findByText("Darth Maul")).toBeInTheDocument();
         expect(await screen.findByText("The Phantom Menace")).toBeInTheDocument();
         expect(await screen.findByText("FC-20 speeder bike")).toBeInTheDocument();
     });

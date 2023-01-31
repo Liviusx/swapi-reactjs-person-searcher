@@ -31,8 +31,7 @@ export const PersonTable = () => {
     if (error) {
         return <p>Error occured while loading the component</p>
     }
-    if(data.searchPerson.length === 0)
-    {
+    if (data.searchPerson.length === 0) {
         return <p>No data found for entry <b>{queriedPerson}</b> !</p>
     }
 
@@ -43,29 +42,31 @@ export const PersonTable = () => {
                     <PersonName >{person.name}</PersonName>
                     <Table id="table-swapi-person">
                         <tbody>
-                            <td style={{ width: 150}}><h3>Films</h3></td>
-                            <td>
-                                <ul style={{ width: 200}}>
-                                    {person.films.map(film => (
-                                        <StyledLi key={film.title}>
-                                            {film.title}
-                                        </StyledLi>
-                                    ))}
-                                </ul>
-                            </td>
-                            <td style={{ width: 150}}><h3>Vehicles</h3></td>
-                            <td>
-                                <ul style={{ width: 200}}>
-                                    {person.vehicles.map(vehicle => (
-                                        <StyledLi key={vehicle.model}>
-                                            <td>{vehicle.model}</td>
-                                        </StyledLi>
-                                    ))}
-                                    {
-                                        person.vehicles.length == 0 && <StyledLi>None</StyledLi>
-                                    }
-                                </ul>
-                            </td>
+                            <tr>
+                                <td style={{ width: 150 }}><h3>Films</h3></td>
+                                <td>
+                                    <ul style={{ width: 200 }}>
+                                        {person.films.map(film => (
+                                            <StyledLi key={film.title}>
+                                                {film.title}
+                                            </StyledLi>
+                                        ))}
+                                    </ul>
+                                </td>
+                                <td style={{ width: 150 }}><h3>Vehicles</h3></td>
+                                <td>
+                                    <ul style={{ width: 200 }}>
+                                        {person.vehicles.map(vehicle => (
+                                            <StyledLi key={vehicle.model}>
+                                                <div>{vehicle.model}</div>
+                                            </StyledLi>
+                                        ))}
+                                        {
+                                            person.vehicles.length == 0 && <StyledLi>None</StyledLi>
+                                        }
+                                    </ul>
+                                </td>
+                            </tr>
                         </tbody>
                     </Table>
                 </div>
