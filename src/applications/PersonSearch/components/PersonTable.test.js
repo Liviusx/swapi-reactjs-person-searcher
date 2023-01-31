@@ -6,6 +6,8 @@ import { GET_PERSON_BY_NAME } from '../gqlQueries';
 import { ApolloProvider } from '@apollo/client';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
+
+// Test case where the client connects to the actual graphql API
 it("renders without error", async () => {
     const client = new ApolloClient({
         uri: "http://localhost:4002/",
@@ -21,6 +23,8 @@ it("renders without error", async () => {
     expect(await screen.findByText("Loading.....")).toBeInTheDocument();
 });
 
+
+// Test case where the request and result are being mocked
 describe("PersonTable component", () => {
     it("should render the component onto the screen", async () => {
         const mocks = [
