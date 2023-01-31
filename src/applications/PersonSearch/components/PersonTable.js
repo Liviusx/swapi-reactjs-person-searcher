@@ -37,11 +37,11 @@ export const PersonTable = () => {
     }
 
     return (
-        <Container>
+        <Container id="container-person-component">
             {data.searchPerson.map(person => (
                 <div key={person.name}>
                     <PersonName >{person.name}</PersonName>
-                    <Table>
+                    <Table id="table-swapi-person">
                         <tbody>
                             <td style={{ width: 150}}><h3>Films</h3></td>
                             <td>

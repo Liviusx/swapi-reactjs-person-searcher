@@ -1,28 +1,14 @@
 import React, { createContext, useState } from "react";
 import { useQuery, gql } from "@apollo/client";
+import { GET_PERSON_BY_NAME } from "./gqlQueries";
 
-
-const query = gql`
-    query Search($name: String!) {
-        searchPerson(name: $name) {
-            name
-            films {
-                title
-            }
-            vehicles {
-                name,
-                model
-            }
-        }
-    }
-`;
 
 const PersonSearchContext = createContext();
 
 const PersonSearchContextProvider = (props) => {
-    const [searchedPerson, setSearchedPerson] = useState("");
-    const [queriedPerson, setQueriedPerson] = useState("");
-    const { data, loading, error } = useQuery(query, {
+    const [searchedPerson, setSearchedPerson] = useState("Darth Maul");
+    const [queriedPerson, setQueriedPerson] = useState("Darth Maul");
+    const { data, loading, error } = useQuery(GET_PERSON_BY_NAME, {
         variables: { name: queriedPerson } 
     });
 
